@@ -1,0 +1,25 @@
+---
+export interface Props {
+  lines: number;
+}
+
+function* nums(limit: number) {
+  for (let i = 1; i <= limit; i = i + 1) {
+    yield i;
+  }
+}
+
+const content = Array.from(nums(Astro.props.lines)).join("\n");
+---
+
+<div class="not-prose relative h-full select-none">
+  <pre
+    role="presentation"
+    class="absolute inset-y-0 right-0 max-w-[3ch] overflow-hidden text-right font-mono text-sm text-red-300 dark:text-red-800"
+    set:text={content}
+  />
+  <div
+    class="pointer-events-none absolute inset-y-0 right-0 w-[3ch] select-none bg-gradient-to-t from-stone-50 to-10% bg-blend-multiply transition-all dark:from-stone-900"
+  >
+  </div>
+</div>

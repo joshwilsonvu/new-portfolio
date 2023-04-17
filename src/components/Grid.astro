@@ -1,0 +1,43 @@
+---
+export interface Props {
+  class?: string;
+}
+---
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr min(65ch, calc(100% - 3rem)) 1fr;
+    grid-auto-rows: min-content;
+    grid-column-gap: 1.5rem;
+  }
+  .left {
+    grid-column: 1;
+    position: relative;
+    display: none;
+  }
+  .center {
+    grid-column: 2;
+  }
+  .right {
+    grid-column: 2;
+  }
+  @media (min-width: calc(65ch + 12rem)) {
+    .left {
+      display: block;
+    }
+  }
+  @media (min-width: 64rem) {
+    .grid {
+      grid-template-columns: 1fr min(65ch, 65%) min(35ch, calc(35% - 3rem)) 1fr;
+    }
+    .right {
+      grid-column: 3;
+    }
+  }
+</style>
+<div class={`${Astro.props.class ?? ""} grid`}>
+  <div class="left"><slot name="left" /></div>
+  <div class="center"><slot /></div>
+  <div class="right"><slot name="right" /></div>
+</div>

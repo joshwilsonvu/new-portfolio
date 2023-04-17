@@ -1,67 +1,52 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
-import Nav from "../components/Nav.astro";
+import Grid from "../components/Grid.astro";
+import LineNums from "../components/LineNums.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-  <main>
-    <h1>
-      An Introduction to the Life and Works of <b>Josh Wilson</b>, Software
-      Engineer
-    </h1>
-    <p class="subtitle">Second Edition</p>
-    <p class="small">The Classic Work, Newly Updated and Revised</p>
+<Layout title="Josh Wilson, Software Engineer">
+  <main class="my-6 w-full flex-grow">
+    <Grid>
+      <h1
+        id="introduction"
+        class="mb-2 font-display text-3xl leading-snug xs:text-3xl"
+      >
+        <span class="hidden xs:inline">An Introduction to the</span>
+        <span class="inline xs:hidden">The</span>
+        Life and Works of <b>Josh Wilson</b>,
+        {/* Don't leave "Engineer" hanging on its own line */}
+        <span class="whitespace-nowrap">Software Engineer</span>
+      </h1>
+      <p class="font-display text-lg">Second Edition</p>
+      <p class="text-sm">The Classic Work, Newly Updated and Revised</p>
+    </Grid>
+    <Grid class="prose prose-stone mt-10 max-w-none dark:prose-invert">
+      <h2 id="abstract" class="mt-0 font-display dark:font-normal">
+        <span class="sr-only">1</span>
+        <span aria-hidden>I</span>
+        – Abstract
+      </h2>
+      <p>
+        I am inspired by the myriad ways the science and application of software
+        can <b>positively</b> impact humans across the world.
+      </p>
+
+      <p>To me, the best parts of making software are</p>
+      <ol>
+        <li>
+          <b>continuously learning</b> fascinating concepts and technologies freely
+          shared by those before me, and
+        </li>
+        <li>
+          leveraging these with good taste & design to make products that
+          <b>delight users</b>.
+        </li>
+      </ol>
+      <p>
+        With other engineers and on my own, I’ve built complex, resilient
+        products for meeting diverse needs with modern web technologies.
+      </p>
+      <LineNums lines={100} slot="left" />
+    </Grid>
   </main>
 </Layout>
-
-<style>
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 70ch;
-  }
-  h1 {
-    font-size: calc(30rem / 16);
-    font-weight: 500;
-    line-height: 1.2;
-  }
-  .subtitle {
-    font-size: calc(20rem / 16);
-  }
-  .small {
-    font-size: calc(12rem / 16);
-  }
-  /* .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 100%;
-    background-position: 0%;
-  }
-  .instructions {
-    line-height: 1.6;
-    margin: 1rem 0;
-    border: 1px solid rgba(var(--accent), 25%);
-    background-color: white;
-    padding: 1rem;
-    border-radius: 0.4rem;
-  }
-  .instructions code {
-    font-size: 0.875em;
-    font-weight: bold;
-    background: rgba(var(--accent), 12%);
-    color: rgb(var(--accent));
-    border-radius: 4px;
-    padding: 0.3em 0.45em;
-  }
-  .instructions strong {
-    color: rgb(var(--accent));
-  }
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
-  } */
-</style>
