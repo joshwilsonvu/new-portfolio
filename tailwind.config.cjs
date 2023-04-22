@@ -4,8 +4,12 @@ module.exports = {
   theme: {
     fontFamily: {
       mono: ["Courier Prime", "Courier", "monospace"],
-      serif: ["Old Standard TT", "serif"],
-      display: ["Playfair Display", "serif"],
+      serif: ["Georgia", "serif"],
+      // display: ["Playfair Display", "serif"],
+      display: ["Old Standard TT", "serif"],
+      crimson: ["Crimson Pro", "serif"],
+    //   garamond: ["Cormorant Garamond", "Garamond", "serif"],
+    //   cm: ["Computer Modern Serif", "serif"],
     },
     screens: {
       xs: "32rem",

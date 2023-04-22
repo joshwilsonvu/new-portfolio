@@ -1,3 +1,35 @@
+/* old-standard-tt-regular - latin */
+@font-face {
+  font-display: block; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Old Standard TT";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/old-standard-tt-v18-latin-regular.woff2") format("woff2"),
+    /* Chrome 36+, Opera 23+, Firefox 39+ */
+      url("/fonts/old-standard-tt-v18-latin-regular.woff") format("woff"); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* old-standard-tt-700 - latin */
+@font-face {
+  font-display: block; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Old Standard TT";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/old-standard-tt-v18-latin-700.woff2") format("woff2"),
+    /* Chrome 36+, Opera 23+, Firefox 39+ */
+      url("/fonts/old-standard-tt-v18-latin-700.woff") format("woff"); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* courier-prime-regular - latin */
+@font-face {
+  font-display: block; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Courier Prime";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/courier-prime-v7-latin-regular.woff2") format("woff2"),
+    /* Chrome 36+, Opera 23+, Firefox 39+ */
+      url("/fonts/courier-prime-v7-latin-regular.woff") format("woff"); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 /**
  * This injects Tailwind's base styles and any base styles registered by
  * plugins.
