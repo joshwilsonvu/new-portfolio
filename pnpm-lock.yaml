@@ -16,7 +16,8 @@ specifiers:
   prettier-plugin-astro: ^0.8.0
   prettier-plugin-tailwindcss: ^0.2.7
   solid-js: ^1.4.3
-  tailwindcss: ^3.0.24
+  tailwindcss: ^3.3.1
+  tailwindcss-animate: ^1.0.5
   typescript: ^5.0.4
 
 dependencies:
@@ -27,7 +28,6 @@ dependencies:
   clsx: 1.2.1
   culori: 3.1.0
   solid-js: 1.7.3
-  tailwindcss: 3.3.1
 
 devDependencies:
   '@babel/core': 7.21.4
@@ -38,6 +38,8 @@ devDependencies:
   prettier: 2.8.7
   prettier-plugin-astro: 0.8.0
   prettier-plugin-tailwindcss: 0.2.7_kb4gmvngxncp3puqxt3b6slppy
+  tailwindcss: 3.3.1
+  tailwindcss-animate: 1.0.5_tailwindcss@3.3.1
   typescript: 5.0.4
 
 packages:
@@ -3979,6 +3981,14 @@ packages:
     dependencies:
       '@pkgr/utils': 2.3.1
       tslib: 2.5.0
+
+  /tailwindcss-animate/1.0.5_tailwindcss@3.3.1:
+    resolution: {integrity: sha512-UU3qrOJ4lFQABY+MVADmBm+0KW3xZyhMdRvejwtXqYOL7YjHYxmuREFAZdmVG5LPe5E9CAst846SLC4j5I3dcw==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      tailwindcss: 3.3.1
+    dev: true
 
   /tailwindcss/3.3.1:
     resolution: {integrity: sha512-Vkiouc41d4CEq0ujXl6oiGFQ7bA3WEhUZdTgXAhtKxSy49OmKs8rEfQmupsfF0IGW8fv2iQkp1EVUuapCFrZ9g==}

@@ -1,6 +1,6 @@
 ---
 const thisYear = new Date().getFullYear();
-const copyright = thisYear === 2023 ? "2023" : `2023–${thisYear}`;
+const copyright = thisYear <= 2023 ? "2023" : `2023–${thisYear}`;
 ---
 
 <footer

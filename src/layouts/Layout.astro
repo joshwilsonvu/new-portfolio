@@ -1,7 +1,7 @@
 ---
 import "./global.css";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import Header from "components/Header";
+import Footer from "components/Footer.astro";
 
 export interface Props {
   title: string;
@@ -9,16 +9,58 @@ export interface Props {
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en" class="noscript h-full">
   <head>
+    {/* .noscript gets removed by inline script */}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{Astro.props.title}</title>
+    <style is:global>
+      /* old-standard-tt-regular - latin */
+      @font-face {
+        font-display: block; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+        font-family: "Old Standard TT";
+        font-style: normal;
+        font-weight: 400;
+        src: url("/fonts/old-standard-tt-v18-latin-regular.woff2")
+            format("woff2"),
+          /* Chrome 36+, Opera 23+, Firefox 39+ */
+            url("/fonts/old-standard-tt-v18-latin-regular.woff") format("woff"); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      }
+      /* old-standard-tt-700 - latin */
+      @font-face {
+        font-display: block; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+        font-family: "Old Standard TT";
+        font-style: normal;
+        font-weight: 700;
+        src: url("/fonts/old-standard-tt-v18-latin-700.woff2") format("woff2"),
+          /* Chrome 36+, Opera 23+, Firefox 39+ */
+            url("/fonts/old-standard-tt-v18-latin-700.woff") format("woff"); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      }
+
+      /* courier-prime-regular - latin */
+      @font-face {
+        font-display: block; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+        font-family: "Courier Prime";
+        font-style: normal;
+        font-weight: 400;
+        src: url("/fonts/courier-prime-v7-latin-regular.woff2") format("woff2"),
+          /* Chrome 36+, Opera 23+, Firefox 39+ */
+            url("/fonts/courier-prime-v7-latin-regular.woff") format("woff"); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      }
+    </style>
+  </head>
+  <body
+    class="flex min-h-full w-full flex-col bg-stone-50 font-serif text-stone-900 transition-all dark:bg-stone-900 dark:text-stone-100"
+  >
     <script is:inline>
-      (() => {
-        let d = localStorage.getItem("dark");
+      // Remove .noscript with JS
+      document.documentElement.classList.remove("noscript");
+      {
+        // Use the user's saved preference for dark mode, and fall back to system preference
+        const d = localStorage.getItem("dark");
         if (
           d === "true" ||
           (d == null &&
@@ -26,13 +68,23 @@ export interface Props {
         ) {
           document.documentElement.classList.add("dark");
         }
-      })();
+      }
+
+      if (document.fonts) {
+        // Apply opacity-0 to body, remove when fonts are loaded
+        document.body.classList.add("opacity-0");
+        document.fonts.load("16px Old Standard TT");
+        document.fonts.load("16px bold Old Standard TT");
+        document.fonts.load("16px Courier Prime");
+        Promise.race([
+          new Promise((res) => setTimeout(res, 500)),
+          document.fonts.ready,
+        ]).then(() => {
+          document.body.classList.remove("opacity-0");
+        });
+      }
     </script>
-  </head>
-  <body
-    class="flex min-h-full w-full flex-col bg-stone-50 font-serif text-stone-900 transition-colors dark:bg-stone-900 dark:text-stone-100"
-  >
-    <Header />
+    <Header pathname={Astro.url.pathname} client:load />
     <main class="mx-auto w-full max-w-7xl px-6 xs:px-12">
       <slot />
     </main>

@@ -1,6 +1,7 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import LineNums from "../components/LineNums.astro";
+import Layout from "layouts/Layout.astro";
+import LineNums from "components/LineNums.astro";
+import Tagline from "components/Tagline";
 
 export const prerender = true;
 ---
@@ -10,16 +11,18 @@ export const prerender = true;
     .two-columns {
       grid-template-columns: min(65ch, 100%);
     }
-    @media screen and (min-width: 48rem) {
+    /* TODO: Implement when other pages are ready.
+    @screen md {
       .two-columns {
         grid-template-columns: minmax(auto, 65ch) minmax(16rem, 1fr);
       }
     }
+    */
   </style>
   <div class="mb-10 max-w-prose">
     <h1
       id="introduction"
-      class="mb-6 font-display text-4xl leading-tight xs:text-3xl"
+      class="mb-6 font-display text-3xl leading-tight xs:text-4xl"
     >
       <span class="hidden xs:inline">An Introduction to the</span>
       <span class="inline xs:hidden">The</span>
@@ -28,10 +31,10 @@ export const prerender = true;
       <span class="whitespace-nowrap">Software Engineer</span>
     </h1>
     <p class="text-lg">Second Edition</p>
-    <p class="text-sm">The Classic Work, Newly Updated and Revised</p>
+    <Tagline client:load />
   </div>
   <div
-    class="two-columns prose prose-stone relative grid w-full max-w-none auto-rows-auto gap-x-6 leading-snug dark:prose-invert prose-headings:font-display prose-headings:font-normal sm:text-justify md:text-left lg:text-justify"
+    class="two-columns prose prose-stone relative grid w-full max-w-none auto-rows-auto gap-x-4 leading-snug dark:prose-invert prose-headings:font-display prose-headings:font-normal prose-p:text-inherit prose-a:text-inherit prose-a:underline-offset-2 sm:text-justify md:text-left lg:text-justify"
   >
     <LineNums
       lines={80}
@@ -39,9 +42,8 @@ export const prerender = true;
     />
     <div class="col-start-1">
       <h2 id="abstract" class="mt-0">
-        <span class="sr-only">1</span>
-        <span aria-hidden>I</span>
-        – Abstract
+        <span aria-hidden="true">I –</span>
+        Abstract
       </h2>
       <p>
         I am inspired by how the science and application of software can
@@ -66,9 +68,8 @@ export const prerender = true;
     </div>
     <div class="col-start-1">
       <h2 id="early-career">
-        <span class="sr-only">2</span>
-        <span aria-hidden>II</span>
-        – Early Career
+        <span aria-hidden="true">II –</span>
+        Early Career
       </h2>
       <p>
         My journey as a developer began in a humble place—a high school math
@@ -89,20 +90,18 @@ export const prerender = true;
 
     <div class="col-start-1">
       <h2 id="current-work">
-        <span class="sr-only">3</span>
-        <span aria-hidden>III</span>
-        – Current Work
+        <span aria-hidden="true">III –</span>
+        Current Work
       </h2>
       <p>
-        I’m happily employed, working remotely with a small team on
+        I’m currently working remotely with a small team on
         <a href="https://learnplatform.com">LearnPlatform</a> by <span
           class="whitespace-nowrap"
         >
           <a href="https://www.instructure.com">Instructure</a>.
         </span> I’ve had the opportunity to dive into technologies I had little prior
         experience in, such as Ruby on Rails and Chrome extension development, and
-        quickly became productive with the support of more senior engineers. It’s
-        an honor to serve our education system.
+        quickly became productive with the support of more senior engineers.
       </p>
       <p>
         After making the case for using TypeScript to my team, I’m proud to be
@@ -114,10 +113,8 @@ export const prerender = true;
         on ensuring that others feel empowered by the change, not daunted.
       </p>
       <p>
-        Outside of my employment, I have had the privilege to join the Solid
-        Ecosystem Team in recognition of my work on <span
-          class="whitespace-nowrap"
-        >
+        Outside of my job, I have had the privilege to join the Solid Ecosystem
+        Team in recognition of my work on <span class="whitespace-nowrap">
           <a href="https://github.com/solidjs-community/eslint-plugin-solid">
             eslint-plugin-solid</a
           >,
@@ -137,8 +134,35 @@ export const prerender = true;
         world can make a real impact. I’m grateful for the <!--(N - pull from GitHub)-->
         contributors that have helped make the project better.
       </p>
-
-      <!-- <LineNums lines={80} slot="left" /> -->
+    </div>
+    <div class="col-start-1">
+      <h2 id="current-work">
+        <span aria-hidden="true">IV –</span>
+        References
+      </h2>
+      <ol class="prose-sm prose-a:text-inherit">
+        <li>
+          GitHub. <a href="https://github.com/joshwilsonvu"
+            >https://github.com/joshwilsonvu</a
+          >
+        </li>
+        <li>
+          Email. <a href="mailto://joshwilsonvu@gmail.com"
+            >mailto://joshwilsonvu@gmail.com</a
+          >
+        </li>
+        <li>
+          Twitter. <a href="https://twitter.com/joshwilsonvu"
+            >https://twitter.com/joshwilsonvu</a
+          >
+        </li>
+        <li>
+          LinkedIn. <a
+            href="https://www.linkedin.com/in/joshua-wilson-915192127/"
+            >https://www.linkedin.com/in/joshua-wilson-915192127/</a
+          >
+        </li>
+      </ol>
     </div>
   </div>
 </Layout>
