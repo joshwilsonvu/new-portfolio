@@ -50,7 +50,7 @@ function Tagline() {
       class={clsx(
         "block cursor-pointer appearance-none text-sm italic transition-opacity duration-300 ease-in-out animate-in fade-in fill-mode-backwards [.noscript_&]:cursor-default",
         isHiding() ? "opacity-0" : "",
-        isFadedIn() ? "" : "delay-700"
+        isFadedIn() ? "" : "delay-700",
       )}
       onClick={handler}
     >

@@ -163,10 +163,10 @@ const config = {
         1: "1px",
       },
       maxWidth: {
-        prose: '70ch',
+        prose: "70ch",
         // Eventually, we want two columns and then this can be 7xl. But for now
         // I'm shipping as one prose column.
-        page: '70ch' // prose
+        page: "70ch", // prose
       },
       keyframes: {
         "fade-in": {
@@ -217,6 +217,9 @@ const config = {
   ],
   experimental: {
     optimizeUniversalDefaults: true,
+  },
+  future: {
+    hoverOnlyWhenSupported: true,
   },
 };
 
