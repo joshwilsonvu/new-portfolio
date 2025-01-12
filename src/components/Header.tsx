@@ -2,6 +2,7 @@ import { createEffect, createSignal, onCleanup, Show } from "solid-js";
 import DarkModeToggle from "./DarkModeToggle";
 import clsx from "clsx";
 import PrinterFilterToggle from "./PrinterFilterToggle";
+import { createMediaQuery } from "@solid-primitives/media";
 
 function Header() {
   const [isScrollingDown, setIsScrollingDown] = createSignal(false);
@@ -19,6 +20,8 @@ function Header() {
     onCleanup(() => window.removeEventListener("scroll", listener));
   });
 
+  const supportsHover = createMediaQuery("(hover: hover)");
+
   return (
     <header
       class={clsx(
@@ -26,7 +29,7 @@ function Header() {
         isScrollingDown() && "opacity-0",
         isScrollingDown() || isAtTop()
           ? "border-transparent bg-transparent"
-          : "border-ui bg-bg"
+          : "border-ui bg-bg",
       )}
     >
       <nav class="mx-auto flex max-w-page items-center justify-start gap-6 overflow-x-auto px-6 py-4 xs:px-12">
@@ -39,9 +42,21 @@ function Header() {
         >
           Writings
         </a> */}
-        <DarkModeToggle class="ml-auto opacity-0 transition-opacity group-hover:js:opacity-100 group-hfv:js:opacity-100" />
+        <DarkModeToggle
+          class={clsx(
+            "ml-auto",
+            supportsHover() &&
+              "opacity-0 transition-opacity group-hover:js:opacity-100 group-hfv:js:opacity-100",
+          )}
+        />
         <Show when={typeof window !== "undefined" && !window.NO_PRINTER_FILTER}>
-          <PrinterFilterToggle class="text-xl font-bold opacity-0 transition-opacity group-hover:js:opacity-100 group-hfv:js:opacity-100" />
+          <PrinterFilterToggle
+            class={clsx(
+              "text-xl font-bold",
+              supportsHover() &&
+                "opacity-0 transition-opacity group-hover:js:opacity-100 group-hfv:js:opacity-100",
+            )}
+          />
         </Show>
       </nav>
     </header>
