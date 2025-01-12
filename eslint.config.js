@@ -1,12 +1,12 @@
 import eslint from "@eslint/js";
 import solid from "eslint-plugin-solid";
 import tseslint from "typescript-eslint";
-import globals from 'globals';
+import globals from "globals";
 
 export default tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.recommendedTypeChecked,
-  solid.configs['flat/typescript'],
+  solid.configs["flat/typescript"],
   {
     languageOptions: {
       parserOptions: {
@@ -14,12 +14,12 @@ export default tseslint.config(
         tsconfigRootDir: import.meta.dirname,
       },
       globals: {
-        ...globals.node
-      }
+        ...globals.node,
+      },
     },
     rules: {
-      '@typescript-eslint/no-unused-vars': 'warn',
-      "@typescript-eslint/no-require-imports": "warn"
-    }
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-require-imports": "warn",
+    },
   },
 );
