@@ -2,14 +2,18 @@
 import Layout from "layouts/Layout.astro";
 import LineNums from "components/LineNums.astro";
 import Tagline from "components/Tagline";
+// import tailwindConfig from "../../tailwind.config.cjs";
+
+// const screens = tailwindConfig.
 
 export const prerender = true;
 ---
 
 <Layout title="Josh Wilson">
   <style>
-    .two-columns {
-      grid-template-columns: min(65ch, 100%);
+    .counter::before {
+      counter-increment: headings;
+      content: counter(headings, upper-roman) " — ";
     }
     /* TODO: Implement when other pages are ready.
     @screen md {
@@ -19,7 +23,7 @@ export const prerender = true;
     }
     */
   </style>
-  <div class="mb-10 max-w-prose">
+  <div class="mb-10 max-w-prose" data-demo="sort">
     <h1
       id="introduction"
       class="mb-6 font-display text-3xl leading-tight xs:text-4xl"
@@ -30,139 +34,168 @@ export const prerender = true;
       {/* Don't leave "Engineer" hanging on its own line */}
       <span class="whitespace-nowrap">Software Engineer</span>
     </h1>
-    <p class="text-lg">Second Edition</p>
+    <p class="text-lg" role="presentation">Second Edition</p>
     <Tagline client:load />
   </div>
-  <div
-    class="two-columns prose prose-stone relative grid w-full max-w-none auto-rows-auto gap-x-4 leading-snug dark:prose-invert prose-headings:font-display prose-headings:font-normal prose-p:text-inherit prose-a:text-inherit prose-a:underline-offset-2 sm:text-justify md:text-left lg:text-justify"
-  >
-    <LineNums
-      lines={80}
-      class="absolute inset-y-0 left-[-4ch] hidden xs:block"
-    />
-    <div class="col-start-1">
-      <h2 id="abstract" class="mt-0">
-        <span aria-hidden="true">I –</span>
-        Abstract
-      </h2>
-      <p>
-        I am inspired by how the science and application of software can
-        <b>positively</b> impact people across the world.
-      </p>
+  <div class="flex">
+    <div
+      class="prose-a prose prose-flexoki relative mb-[35vh] w-full max-w-none flex-auto basis-3/5 leading-snug [counter-reset:headings] prose-headings:font-display prose-headings:font-normal prose-p:text-inherit sm:text-justify md:text-left lg:text-justify"
+    >
+      <!-- <LineNums
+        lines={90}
+        class="absolute inset-y-0 left-[-4ch] hidden xs:block"
+      /> -->
+      <div class="col-start-1" data-demo="sort">
+        <h2 id="abstract" class="mt-0">
+          <span aria-hidden="true" class="counter"></span>
+          Abstract
+        </h2>
+        <p>
+          I am inspired by how the science and application of software can
+          <b>positively</b> impact people across the world.
+        </p>
 
-      <p>To me, the best parts of making software are</p>
-      <ol>
-        <li>
-          <b>continuously learning</b> fascinating concepts and technologies freely
-          shared by those before me, and
-        </li>
-        <li>
-          leveraging these with good taste & design to make products that
-          <b>delight users</b>.
-        </li>
-      </ol>
-      <p class="mb-0">
-        With other engineers and on my own, I’ve built complex, resilient
-        products for meeting diverse needs with modern web technologies.
-      </p>
-    </div>
-    <div class="col-start-1">
-      <h2 id="early-career">
-        <span aria-hidden="true">II –</span>
-        Early Career
-      </h2>
-      <p>
-        My journey as a developer began in a humble place—a high school math
-        class, when I discovered that graphing calculators can be programmed.
-        What started as writing small scripts to solve small problems quickly
-        evolved. In a nod to retro arcade games, I ended the class having
-        written a full-fledged Galaga clone on my calculator—with animation,
-        progressive difficulty, and a scoring system.
-      </p>
-      <p class="mb-0">
-        After earning my degree in 2019, and discovering that the web is much
-        more suitable for delighting people with software, I have been seeking
-        out as much knowledge as I can so that I can excel in my role. I’ve
-        developed a deep understanding of React, TypeScript, Node.js, and other
-        technologies, and I enjoy applying them to help others.
-      </p>
-    </div>
+        <p>To me, the best parts of making software are</p>
+        <ol>
+          <li>
+            <b>continuously learning</b> fascinating concepts and technologies freely
+            shared by those before me, and
+          </li>
+          <li>
+            leveraging these with good taste & design to make products that
+            <b>delight users</b>.
+          </li>
+        </ol>
+        <p class="mb-0">
+          With other engineers and on my own, I’ve built complex, resilient
+          products for meeting diverse needs with modern web technologies.
+        </p>
+      </div>
+      <div class="col-start-1" data-demo="game">
+        <h2 id="early-career">
+          <span aria-hidden="true" class="counter"></span>
+          Early Career
+        </h2>
+        <p>
+          My journey as a developer began in a humble place—a high school math
+          class, when I discovered that graphing calculators can be programmed.
+          What started as writing small scripts to solve small problems quickly
+          evolved. In a nod to retro arcade games, I ended the class having
+          written a full-fledged Galaga clone on my calculator—with animation,
+          progressive difficulty, and a scoring system.
+        </p>
+        <p class="mb-0">
+          After earning my degree in 2019, and discovering that the web is much
+          more suitable for delighting people with software, I have been seeking
+          out as much knowledge as I can so that I can excel in my role. I’ve
+          developed a deep understanding of React, TypeScript, Node.js, and
+          other technologies, and I enjoy applying them to help others.
+        </p>
 
-    <div class="col-start-1">
-      <h2 id="current-work">
-        <span aria-hidden="true">III –</span>
-        Current Work
-      </h2>
-      <p>
-        I’m currently working remotely with a small team on
-        <a href="https://learnplatform.com">LearnPlatform</a> by <span
-          class="whitespace-nowrap"
-        >
-          <a href="https://www.instructure.com">Instructure</a>.
-        </span> I’ve had the opportunity to dive into technologies I had little prior
-        experience in, such as Ruby on Rails and Chrome extension development, and
-        quickly became productive with the support of more senior engineers.
-      </p>
-      <p>
-        After making the case for using TypeScript to my team, I’m proud to be
-        leading our gradual migration from plain JavaScript to TypeScript and to
-        act as a local TypeScript expert. In the process, I have been reminded
-        of how much one must learn about a subject in order to teach it, and
-        challenged to continue growing. A codebase migration like this is as
-        much of a social process as it is a technical one, so I am also focused
-        on ensuring that others feel empowered by the change, not daunted.
-      </p>
-      <p>
-        Outside of my job, I have had the privilege to join the Solid Ecosystem
-        Team in recognition of my work on <span class="whitespace-nowrap">
-          <a href="https://github.com/solidjs-community/eslint-plugin-solid">
-            eslint-plugin-solid</a
-          >,
-        </span> an open source package that helps both new and experienced <a
-          href="https://www.solidjs.com">Solid</a
-        >
-        developers write better code. Though I enjoy working with React, I believe
-        Solid presents a compelling alternative focused on performance and developer
-        experience.
-      </p>
-      <p class="mb-0">
-        <!--(As explained in my full post,)--> Creating this project has been one
-        of the most challenging and rewarding experiences of my career. It’s demonstrated
-        the value of the science of compilers in production-grade tooling. Seeing
-        over 100 GitHub stars and over 1,000 GitHub repositories using my project
-        has validated that identifying a problem and presenting a solution to the
-        world can make a real impact. I’m grateful for the <!--(N - pull from GitHub)-->
-        contributors that have helped make the project better.
-      </p>
+        <h3>LearnPlatform</h3>
+        <p>
+          I worked remotely with a small team on
+          <a href="https://learnplatform.com">LearnPlatform</a> by <span
+            class="whitespace-nowrap"
+          >
+            <a href="https://www.instructure.com">Instructure</a>.</span
+          > I had the opportunity to dive into technologies I had little prior experience
+          in, such as Ruby on Rails and Chrome extension development, and quickly
+          became productive with the support of more senior engineers.
+        </p>
+        <p>
+          After making the case for using TypeScript to my team, I was proud to
+          lead our gradual migration from plain JavaScript to TypeScript and to
+          act as a local TypeScript expert. In the process, I was reminded of
+          how much one must learn about a subject in order to teach it, and I
+          challenged myself to continue growing. A codebase migration like this
+          is as much of a social process as it is a technical one, so I was also
+          focused on ensuring that others feel empowered by the change, not
+          daunted.
+        </p>
+      </div>
+
+      <div class="col-start-1" data-demo="ast">
+        <h2 id="current-work">
+          <span aria-hidden="true" class="counter"></span>
+          Current Work
+        </h2>
+
+        <h3>Aha!</h3>
+        <p>
+          I'm currently working with the great people at <a
+            href="https://aha.io">Aha!</a
+          >, shipping improvements to our public website and internal tools.
+          We're a fully-remote, bootstrapped company. <a
+            href="https://www.aha.io/company/careers">Come work with me!</a
+          >
+        </p>
+
+        <h3>ESLint Plugin Solid</h3>
+        <p>
+          Outside of my job, I have had the privilege to join the Solid
+          Ecosystem Team in recognition of my work on <span
+            class="whitespace-nowrap"
+          >
+            <a href="https://github.com/solidjs-community/eslint-plugin-solid">
+              eslint-plugin-solid</a
+            >,
+          </span> an open source package that helps both new and experienced <a
+            href="https://www.solidjs.com">Solid</a
+          >
+          developers write better code. Though I enjoy working with React, I believe
+          Solid presents a compelling alternative focused on performance and developer
+          experience.
+        </p>
+        <p class="mb-0">
+          <!--(As explained in my full post,)--> Creating this project has been one
+          of the most challenging and rewarding experiences of my career. It’s demonstrated
+          the value of the science of compilers in production-grade tooling. Seeing
+          over 200 GitHub stars and over 4,000 GitHub repositories using my project
+          has validated that identifying a problem and presenting a solution to the
+          world can make a real impact. I’m grateful for the 25+ contributors that
+          have helped make the project better.
+        </p>
+      </div>
+      <div class="col-start-1" data-demo="tcp">
+        <h2 id="current-work">
+          <span aria-hidden="true" class="counter"></span>
+          References
+        </h2>
+        <ol class="prose-sm prose-a:text-inherit">
+          <li>
+            GitHub. <a href="https://github.com/joshwilsonvu"
+              >https://github.com/joshwilsonvu</a
+            >
+          </li>
+          <li>
+            Email. <a href="mailto://joshwilsonvu@gmail.com"
+              >mailto://joshwilsonvu@gmail.com</a
+            >
+          </li>
+          <li>
+            Twitter. <a href="https://twitter.com/joshwilsonvu"
+              >https://twitter.com/joshwilsonvu</a
+            >
+          </li>
+          <li>
+            LinkedIn. <a
+              href="https://www.linkedin.com/in/joshua-wilson-915192127/"
+              >https://www.linkedin.com/in/joshua-wilson-915192127/</a
+            >
+          </li>
+        </ol>
+      </div>
+      <!-- <div
+        class="col-span-full mt-20 rounded-lg bg-red-200 p-8 dark:bg-red-800"
+      >
+        <h2 id="free-palestine" class="mt-0">Free Palestine.</h2>
+        <p>
+          The state of Israel is committing a <strong>genocide</strong> with U.S.
+          support.
+        </p>
+      </div> -->
     </div>
-    <div class="col-start-1">
-      <h2 id="current-work">
-        <span aria-hidden="true">IV –</span>
-        References
-      </h2>
-      <ol class="prose-sm prose-a:text-inherit">
-        <li>
-          GitHub. <a href="https://github.com/joshwilsonvu"
-            >https://github.com/joshwilsonvu</a
-          >
-        </li>
-        <li>
-          Email. <a href="mailto://joshwilsonvu@gmail.com"
-            >mailto://joshwilsonvu@gmail.com</a
-          >
-        </li>
-        <li>
-          Twitter. <a href="https://twitter.com/joshwilsonvu"
-            >https://twitter.com/joshwilsonvu</a
-          >
-        </li>
-        <li>
-          LinkedIn. <a
-            href="https://www.linkedin.com/in/joshua-wilson-915192127/"
-            >https://www.linkedin.com/in/joshua-wilson-915192127/</a
-          >
-        </li>
-      </ol>
-    </div>
+    <!-- <div class="hidden basis-2/5 md:block"></div> -->
   </div>
 </Layout>

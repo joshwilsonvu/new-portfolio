@@ -1,16 +1,153 @@
 // @ts-check
+
 const plugin = require("tailwindcss/plugin");
+const defaultTheme = require("tailwindcss/defaultTheme")
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
+    colors: {
+      inherit: "inherit",
+      transparent: "transparent",
+      // Flexoki colors
+      black: "#100F0F",
+      paper: "#FFFCF0",
+      bg: "var(--bg)",
+      "bg-2": "var(--bg-2)",
+      ui: "var(--ui)",
+      "ui-2": "var(--ui-2)",
+      "ui-3": "var(--ui-3)",
+      tx: "var(--tx)",
+      "tx-2": "var(--tx-2)",
+      "tx-3": "var(--tx-3)",
+      red: {
+        50: "#FFE1D5",
+        100: "#FFCABB",
+        150: "#FDB2A2",
+        200: "#F89A8A",
+        300: "#E8705F",
+        400: "#D14D41",
+        500: "#C03E35",
+        600: "#AF3029",
+        700: "#942822",
+        800: "#6C201C",
+        850: "#551B18",
+        900: "#3E1715",
+        950: "#261312",
+      },
+      orange: {
+        50: "#FFE1D5",
+        100: "#FFCABB",
+        150: "#FDB2A2",
+        200: "#F89A8A",
+        300: "#E8705F",
+        400: "#D14D41",
+        500: "#C03E35",
+        600: "#AF3029",
+        700: "#942822",
+        800: "#6C201C",
+        850: "#551B18",
+        900: "#3E1715",
+        950: "#261312",
+      },
+      yellow: {
+        50: "#FAEEC6",
+        100: "#F6E2A0",
+        150: "#F1D67E",
+        200: "#ECCB60",
+        300: "#DFB431",
+        400: "#D0A215",
+        500: "#BE9207",
+        600: "#AD8301",
+        700: "#8E6B01",
+        800: "#664D01",
+        850: "#503D02",
+        900: "#3A2D04",
+        950: "#241E08",
+      },
+      green: {
+        50: "#EDEECF",
+        100: "#DDE2B2",
+        150: "#CDD597",
+        200: "#BEC97E",
+        300: "#A0AF54",
+        400: "#879A39",
+        500: "#768D21",
+        600: "#66800B",
+        700: "#536907",
+        800: "#3D4C07",
+        850: "#313D07",
+        900: "#252D09",
+        950: "#1A1E0C",
+      },
+      cyan: {
+        50: "#DDF1E4",
+        100: "#BFE8D9",
+        150: "#A2DECE",
+        200: "#87D3C3",
+        300: "#5ABDAC",
+        400: "#3AA99F",
+        500: "#2F968D",
+        600: "#24837B",
+        700: "#1C6C66",
+        800: "#164F4A",
+        850: "#143F3C",
+        900: "#122F2C",
+        950: "#101F1D",
+      },
+      blue: {
+        50: "#E1ECEB",
+        100: "#C6DDE8",
+        150: "#ABCFE2",
+        200: "#92BFDB",
+        300: "#66A0C8",
+        400: "#4385BE",
+        500: "#3171B2",
+        600: "#205EA6",
+        700: "#1A4F8C",
+        800: "#163B66",
+        850: "#133051",
+        900: "#12253B",
+        950: "#101A24",
+      },
+      purple: {
+        50: "#F0EAEC",
+        100: "#E2D9E9",
+        150: "#D3CAE6",
+        200: "#C4B9E0",
+        300: "#A699D0",
+        400: "#8B7EC8",
+        500: "#735EB5",
+        600: "#5E409D",
+        700: "#4F3685",
+        800: "#3C2A62",
+        850: "#31234E",
+        900: "#261C39",
+        950: "#1A1623",
+      },
+      magenta: {
+        50: "#FEE4E5",
+        100: "#FCCFDA",
+        150: "#F9B9CF",
+        200: "#F4A4C2",
+        300: "#E47DA8",
+        400: "#CE5D97",
+        500: "#B74583",
+        600: "#A02F6F",
+        700: "#87285E",
+        800: "#641F46",
+        850: "#4F1B39",
+        900: "#39172B",
+        950: "#24131D",
+      },
+    },
     fontFamily: {
       mono: ["Courier Prime", "Courier", "monospace"],
       serif: ["Georgia", "serif"],
+      display: ["Georgia", "serif"],
       // display: ["Playfair Display", "serif"],
-      display: ["Old Standard TT", "serif"],
-      crimson: ["Crimson Pro", "serif"],
+      // display: ["Old Standard TT", "serif"],
       //   garamond: ["Cormorant Garamond", "Garamond", "serif"],
       //   cm: ["Computer Modern Serif", "serif"],
     },
@@ -23,24 +160,65 @@ module.exports = {
       "2xl": "96rem",
     },
     extend: {
+      borderWidth: {
+        1: "1px",
+      },
+      maxWidth: {
+        prose: '70ch',
+        // Eventually, we want two columns and then this can be 7xl. But for now
+        // I'm shipping as one prose column.
+        page: '70ch' // prose
+      },
       keyframes: {
         "fade-in": {
           from: {
-            opacity: 0,
+            opacity: "0",
           },
           to: {
-            opacity: 1,
+            opacity: "1",
           },
         },
       },
       animation: {
         "fade-in": "fade-in 200ms 1s linear",
       },
+      typography: ({ theme }) => ({
+        flexoki: {
+          css: {
+            "--tw-prose-body": theme("colors.tx"),
+            "--tw-prose-headings": theme("colors.tx"),
+            "--tw-prose-lead": theme("colors.tx-2"),
+            "--tw-prose-links": theme("colors.tx"),
+            "--tw-prose-bold": theme("colors.tx"),
+            "--tw-prose-counters": theme("colors.tx-2"),
+            "--tw-prose-bullets": theme("colors.ui"),
+            "--tw-prose-hr": theme("colors.ui"),
+            "--tw-prose-quotes": theme("colors.tx-2"),
+            "--tw-prose-quote-borders": theme("colors.ui"),
+            "--tw-prose-captions": theme("colors.tx-2"),
+            "--tw-prose-code": theme("colors.tx"),
+            "--tw-prose-pre-code": theme("colors.tx"),
+            "--tw-prose-pre-bg": theme("colors.bg-2"),
+            "--tw-prose-th-borders": theme("colors.ui"),
+            "--tw-prose-td-borders": theme("colors.ui"),
+          },
+        },
+      }),
     },
   },
   darkMode: "class",
   plugins: [
     require("@tailwindcss/typography"),
     require("tailwindcss-animate"),
+    plugin(({ addVariant, addUtilities }) => {
+      addVariant("hfv", "&:has(:focus-visible)");
+      addVariant("group-hfv", ":merge(.group):has(:focus-visible) &");
+      addVariant("js", ":not(.noscript &)");
+    }),
   ],
+  experimental: {
+    optimizeUniversalDefaults: true,
+  },
 };
+
+module.exports = config;

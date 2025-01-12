@@ -1,4 +1,5 @@
-import { createSignal, onMount } from "solid-js";
+import clsx from "clsx";
+import { createEffect, createSignal, onCleanup, onMount } from "solid-js";
 
 const lines = [
   "The Classic Work, Newly Updated and Revised",
@@ -13,31 +14,48 @@ const lines = [
 
 function Tagline() {
   const [isFadedIn, setIsFadedIn] = createSignal(false);
-  onMount(() => {
-    setTimeout(() => setIsFadedIn(true), 700);
-  });
 
   const [count, setCount] = createSignal(0);
   const [isHiding, setIsHiding] = createSignal(false);
 
+  // every so often, change the tagline
+  let changeId: ReturnType<typeof setTimeout>;
+
   const handler = () => {
+    clearTimeout(changeId);
     setIsHiding(true);
+
     setTimeout(() => {
+      clearTimeout(changeId);
       setCount((c) => c + 1);
       setIsHiding(false);
+      changeId = setTimeout(() => handler(), 15_000); // every so often, change the tagline
     }, 300);
   };
 
+  // start timeouts on mount
+  createEffect(() => {
+    changeId = setTimeout(() => handler(), 15_000);
+
+    const fadeInId = setTimeout(() => setIsFadedIn(true), 700);
+    onCleanup(() => {
+      clearTimeout(changeId);
+      clearTimeout(fadeInId);
+    });
+  });
+
   return (
-    <p
-      class={`inline-block min-w-[50%] cursor-pointer text-sm transition-opacity animate-in fade-in duration-300 ease-in-out fill-mode-backwards [.noscript_&]:cursor-default ${
-        isHiding() ? "opacity-0" : ""
-      }${isFadedIn() ? "" : "delay-700"}`}
-      onMouseOver={handler}
+    <button
+      type="button"
+      class={clsx(
+        "block cursor-pointer appearance-none text-sm italic transition-opacity duration-300 ease-in-out animate-in fade-in fill-mode-backwards [.noscript_&]:cursor-default",
+        isHiding() ? "opacity-0" : "",
+        isFadedIn() ? "" : "delay-700"
+      )}
       onClick={handler}
     >
       {lines[count() % lines.length]}
-    </p>
+    </button>
   );
 }
 

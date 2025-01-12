@@ -1,5 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@layer utilities {
+  /*  .link {
+    position: relative;
+    text-decoration: none;
+    &::after {
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      right: 0;
+      background-image: url("/svgs/underline.svg");
+      background-size: 100% 4px;
+      background-position: bottom;
+      background-repeat: no-repeat;
+    }
+    &:is(:hover, :focus-visible) {
+      background-size: 100% 3px;
+    }
+  }
+  .revealed-link {
+    text-decoration: none;
+    &:is(:hover, :focus-visible) {
+      background-image: url("/svgs/underline.svg");
+      background-size: 90% 4px;
+      background-position: bottom;
+      background-repeat: no-repeat;
+      background-size: 100% 3px;
+      text-decoration: none;
+    }
+  } */
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    .printer-filter {
+      filter: url(#printer-filter);
+    }
+    @media (update: slow) or (update: none) {
+      /* disable effect on low-power devices */
+      .printer-filter {
+        filter: none;
+      }
+    }
+  }
+}
+
+:root {
+  color-scheme: light dark;
+  /* Flexoki Colors */
+  --black: #100f0f;
+  --paper: #fffcf0;
+
+  /* Light Theme Colors */
+  --bg: #fffcf0;
+  --bg-2: #f2f0e5;
+  --ui: #e6e4d9;
+  --ui-2: #dad8ce;
+  --ui-3: #cecdc3;
+  --tx: #100f0f;
+  --tx-2: #6f6e69;
+  --tx-3: #b7b5ac;
+}
+
+/* Dark Theme Colors */
+.dark {
+  --bg: #1c1b1a;
+  --bg-2: #282726;
+  --ui: #282726;
+  --ui-2: #343331;
+  --ui-3: #403e3c;
+  --tx: #cecdc3;
+  --tx-2: #878580;
+  --tx-3: #575653;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
+  @apply bg-bg text-tx;
+  background-image: url(/images/natural-paper.png);
+
+  .dark & {
+    /* background-image: url(/images/natural-paper-inverted.png); */
+    /* background-image: url(/images/black-paper.png); */
+    /* background-image: url(/images/paper-3.png); */
+    background-image: url(/images/rice-paper-2.png);
+  }
 }
 
 h1,
@@ -8,12 +94,11 @@ h3,
 h4,
 h5,
 h6 {
-  overflow-wrap: break-word;
-  text-wrap: balance;
+  @apply text-balance break-words;
 }
 
 p {
-  overflow-wrap: break-word;
+  @apply text-pretty break-words;
 }
 
 *:focus-visible {
@@ -30,6 +115,28 @@ p {
   @apply bg-red-800;
 }
 
-.link {
-  @apply hover:underline hover:decoration-2 focus-visible:underline focus-visible:decoration-2;
+a:not(.not-text) {
+  @apply no-underline;
+
+  padding-bottom: 4px;
+  margin-bottom: -4px;
+  background-image: url("/svgs/underline.svg");
+  background-size: 100% 4px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+
+  .dark & {
+    background-image: url("/svgs/underline-inverted.svg");
+  }
+}
+
+:is(b, strong):not(.not-text) {
+  background-image: url("/svgs/highlight.svg");
+  background-size: 100% 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+
+  .dark & {
+    background-image: url("/svgs/highlight-inverted.svg");
+  }
 }

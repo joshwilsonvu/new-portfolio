@@ -1,4 +1,4 @@
-import { onMount, createSignal, createEffect, Show } from "solid-js";
+import { onMount, createSignal, Show } from "solid-js";
 
 function DarkMode() {
   return (

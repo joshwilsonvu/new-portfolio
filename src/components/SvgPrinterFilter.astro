@@ -1,0 +1,22 @@
+---
+const seed = Math.round(Math.random() * 1000);
+---
+
+<svg width="0" height="0">
+  <filter id="printer-filter">
+    <feTurbulence
+      type="fractalNoise"
+      stitchTiles="stitch"
+      seed={seed}
+      baseFrequency="0.0008 0"
+      numOctaves="1"
+      result="4bd7cd38-28bb-419b-91dc-dd4c9a08c022"></feTurbulence>
+    <feDisplacementMap
+      scale="60"
+      xChannelSelector="R"
+      yChannelSelector="R"
+      result="339fc93d-3353-4c2e-b3b9-79166855e880"
+      in="SourceGraphic"
+      in2="4bd7cd38-28bb-419b-91dc-dd4c9a08c022"></feDisplacementMap>
+  </filter>
+</svg>
