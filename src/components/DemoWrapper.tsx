@@ -1,6 +1,5 @@
-import { createMemo, createSignal, JSX, Show } from "solid-js";
+import { createSignal, JSX, Show } from "solid-js";
 import { createVisibilityObserver } from "@solid-primitives/intersection-observer";
-import { createMediaQuery } from "@solid-primitives/media";
 
 export interface DemoWrapperProps {
   wide?: boolean | null;

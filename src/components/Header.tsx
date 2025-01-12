@@ -3,7 +3,7 @@ import DarkModeToggle from "./DarkModeToggle";
 import clsx from "clsx";
 import PrinterFilterToggle from "./PrinterFilterToggle";
 
-function Header(props: { pathname: string }) {
+function Header() {
   const [isScrollingDown, setIsScrollingDown] = createSignal(false);
   const [isAtTop, setIsAtTop] = createSignal(true);
   createEffect(() => {

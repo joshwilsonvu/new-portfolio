@@ -1,14 +1,16 @@
 import { defineConfig } from 'astro/config';
 import solidJs from "@astrojs/solid-js";
 import tailwind from "@astrojs/tailwind";
-
-import node from "@astrojs/node";
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [solidJs(), tailwind()],
   output: 'server',
-  adapter: node({
-    mode: "standalone"
-  })
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+      persist: true,
+    },
+  }),
 });

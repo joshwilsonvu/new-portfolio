@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { createEffect, createSignal, onCleanup, onMount } from "solid-js";
+import { createEffect, createSignal, onCleanup } from "solid-js";
 
 const lines = [
   "The Classic Work, Newly Updated and Revised",
