@@ -61,7 +61,9 @@ declare global {
       }
     </style>
   </head>
-  <body class="flex min-h-full w-full flex-col font-serif">
+  <body
+    class="mx-auto flex min-h-full w-full max-w-page flex-col items-stretch font-serif"
+  >
     <script is:inline>
       // Remove .noscript with JS
       document.documentElement.classList.remove("noscript");
@@ -94,7 +96,7 @@ declare global {
     <SvgPrinterFilter />
     <Header pathname={Astro.url.pathname} client:load />
     <main
-      class="printer-filter mx-auto w-full max-w-page px-6 xs:px-12"
+      class="printer-filter px-6 xs:px-12"
       id="main"
     >
       <slot />
@@ -107,8 +109,8 @@ declare global {
         );
         if (isSafari) {
           // .printer-filter doesn't work well on Safari
-          document.getElementById("main").classList.remove("printer-filter");
-          window.NO_PRINTER_FILTER = true;
+          const main = document.getElementById("main");
+          main.classList.add("is-safari");
         }
       }
     </script>

@@ -4,37 +4,9 @@
 @tailwind variants;
 
 @layer utilities {
-  /*  .link {
-    position: relative;
-    text-decoration: none;
-    &::after {
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      right: 0;
-      background-image: url("/svgs/underline.svg");
-      background-size: 100% 4px;
-      background-position: bottom;
-      background-repeat: no-repeat;
-    }
-    &:is(:hover, :focus-visible) {
-      background-size: 100% 3px;
-    }
-  }
-  .revealed-link {
-    text-decoration: none;
-    &:is(:hover, :focus-visible) {
-      background-image: url("/svgs/underline.svg");
-      background-size: 90% 4px;
-      background-position: bottom;
-      background-repeat: no-repeat;
-      background-size: 100% 3px;
-      text-decoration: none;
-    }
-  } */
-
   @media screen and (prefers-reduced-motion: no-preference) {
-    .printer-filter {
+    /* .printer-filter doesn't work well on Safari */
+    .printer-filter:not(.is-safari) {
       filter: url(#printer-filter);
     }
     @media (update: slow) or (update: none) {
@@ -84,7 +56,7 @@ body {
     /* background-image: url(/images/natural-paper-inverted.png); */
     /* background-image: url(/images/black-paper.png); */
     /* background-image: url(/images/paper-3.png); */
-    background-image: url(/images/rice-paper-2.png);
+    background-image: url(/images/rice-paper-2-dark.png);
   }
 }
 

@@ -7,6 +7,8 @@ import { createMediaQuery } from "@solid-primitives/media";
 function Header() {
   const [isScrollingDown, setIsScrollingDown] = createSignal(false);
   const [isAtTop, setIsAtTop] = createSignal(true);
+  const [supportsPrinterFilter, setSupportsPrinterFilter] = createSignal(false);
+
   createEffect(() => {
     let lastScrollY = window.scrollY;
     const listener = () => {
@@ -18,6 +20,13 @@ function Header() {
     listener();
     window.addEventListener("scroll", listener, { passive: true });
     onCleanup(() => window.removeEventListener("scroll", listener));
+  });
+
+  createEffect(() => {
+    const main = document.getElementById("main");
+    if (main) {
+      setSupportsPrinterFilter(!main.classList.contains("is-safari"));
+    }
   });
 
   const supportsHover = createMediaQuery("(hover: hover)");
@@ -32,7 +41,7 @@ function Header() {
           : "border-ui bg-bg",
       )}
     >
-      <nav class="mx-auto flex max-w-page items-center justify-start gap-6 overflow-x-auto px-6 py-4 xs:px-12">
+      <nav class="flex items-center justify-start gap-6 overflow-x-auto px-6 py-4 xs:px-12">
         <a href="/">Home</a>
         {/* <a
           href="/writings"
@@ -49,7 +58,7 @@ function Header() {
               "opacity-0 transition-opacity group-hover:js:opacity-100 group-hfv:js:opacity-100",
           )}
         />
-        <Show when={typeof window !== "undefined" && !window.NO_PRINTER_FILTER}>
+        <Show when={supportsPrinterFilter()}>
           <PrinterFilterToggle
             class={clsx(
               "text-xl font-bold",
